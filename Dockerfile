@@ -60,6 +60,7 @@ RUN pip install numpy
 RUN pip install matplotlib
 RUN pip install pandas
 #RUN pip install pandas as sb
+RUN pip install keras
 RUN pip install numpy
 RUN pip install keras
 RUN pip install scipy
@@ -77,30 +78,40 @@ RUN pip install opencv-python
 RUN pip install moviepy
 RUN pip install --upgrade matplotlib
 RUN pip install keras-models
-#RUN pip install tensorflow
+RUN pip install keras 
+RUN pip install chardet
+RUN pip install tensorflow
+RUN pip install plotly
+RUN pip install statsmodels
+RUN pip install openpyxl
+RUN apt-get update && apt-get install -y git
+
+
+
 
 
 
 # Configure, compile, install, clean up
-RUN mkdir opencv-${OPENCV_VERSION}/build && \
-    cd opencv-${OPENCV_VERSION}/build && \
-    cmake -D CMAKE_BUILD_TYPE=RELEASE \
-        -D CMAKE_INSTALL_PREFIX=/usr/local \
-        -D INSTALL_PYTHON_EXAMPLES=ON \
-        -D INSTALL_C_EXAMPLES=OFF \
-        -D OPENCV_ENABLE_NONFREE=ON \
-        -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-${OPENCV_VERSION}/modules \
-        -D OPENCV_SKIP_PYTHON_LOADER=ON \
-        -D PYTHON_EXECUTABLE=/usr/bin/python \
-        -D BUILD_EXAMPLES=ON \
-        -D BUILD_DOCS=OFF \
-        -D BUILD_PERF_TESTS=OFF \
-        -D BUILD_TESTS=OFF \
-        .. && \
-    make -j4 && \
-    make install && \
-    ldconfig && \
-    rm -rf opencv*
+#RUN mkdir opencv-${OPENCV_VERSION}/build && \
+  #  cd opencv-${OPENCV_VERSION}/build && \
+   # cmake -D CMAKE_BUILD_TYPE=RELEASE \
+     #   -D CMAKE_INSTALL_PREFIX=/usr/local \
+    #    -D INSTALL_PYTHON_EXAMPLES=ON \
+     #   -D INSTALL_C_EXAMPLES=OFF \
+     #   -D OPENCV_ENABLE_NONFREE=ON \
+     #   -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-${OPENCV_VERSION}/modules \
+     #   -D OPENCV_SKIP_PYTHON_LOADER=ON \
+     #   -D PYTHON_EXECUTABLE=/usr/bin/python \
+      
+      #  -D BUILD_EXAMPLES=ON \
+       # -D BUILD_DOCS=OFF \
+       # -D BUILD_PERF_TESTS=OFF \
+      #  -D BUILD_TESTS=OFF \
+    #    .. && \
+    #make -j4 && \
+  #  make install && \
+  #  ldconfig && \
+    #rm -rf opencv*
 
 # Copy Jupyter settings
 COPY .jupyter .jupyter
@@ -115,10 +126,15 @@ COPY notebooks notebooks
 WORKDIR /root/notebooks
 ENV PYTHONPATH=/root/notebooks
 
+
+
 # Run tests
 #RUN py.test tests/test_requirements.py
 
 # Define entrypoint
 ENTRYPOINT ["jupyter", "notebook"]
 
-EXPOSE 8888
+EXPOSE 8881
+#docker run -p 8881:8888 monteblack1/notebook-111 
+
+#docker build . -t monteblack1/notebook-111                  
