@@ -56,13 +56,9 @@ RUN echo "Downloading OpenCV source..." && \
     tar xzf opencv_contrib.tgz
 
 # numpy is required for OpenCV Python bindings
-RUN pip install matplotlib
-RUN pip install tensorflow
 RUN pip install numpy
 RUN pip install matplotlib
 RUN pip install pandas
-RUN pip install opencv-python==4.5.4.58
-
 #RUN pip install pandas as sb
 RUN pip install keras
 RUN pip install numpy
@@ -78,14 +74,13 @@ RUN pip install imageio-ffmpeg
 #RUN pip install mpl_toolkits
 RUN pip install scikit-image
 RUN pip install pillow
-#·RUN pip install opencv-python
+RUN pip install opencv-python
 RUN pip install moviepy
 RUN pip install --upgrade matplotlib
-#RUN pip install keras-models
-#RUN pip3 install opencv-python
+RUN pip install keras-models
 RUN pip install keras 
 RUN pip install chardet
-#RUN pip install tensorflow
+RUN pip install tensorflow
 RUN pip install plotly
 RUN pip install statsmodels
 RUN pip install openpyxl
